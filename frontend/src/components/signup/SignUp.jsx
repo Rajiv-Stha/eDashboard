@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./signup.module.css";
 const SignUp = () => {
-  //   const [name, setName] = useState("");
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const [emailData, setEmailData] = useState({
     name: "",
     email: "",
     password: "",
   });
-
+  useEffect(() => {
+    const auth = localStorage.getItem("user");
+    if (auth) {
+      navigate("/");
+    }
+  }, []);
+  const fetching = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/register",
+        emailData
+      );
+      // console.log(response, "this is response");
+      if (response.status === 200) {
+        localStorage.setItem("user", JSON.stringify(response.data.message));
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEmailData((prev) => {
@@ -22,6 +41,12 @@ const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(emailData);
+    fetching();
+    setEmailData({
+      name: "",
+      email: "",
+      password: "",
+    });
   };
 
   return (

@@ -22,7 +22,7 @@ const SignUp = () => {
         "http://localhost:8000/api/register",
         emailData
       );
-      // console.log(response, "this is response");
+      console.log(response, "this is response");
       if (response.status === 200) {
         localStorage.setItem("user", JSON.stringify(response.data.message));
         navigate("/");

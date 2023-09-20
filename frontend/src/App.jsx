@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div className="app_container">
-        <Navbar />
+      
         <Routes>
           <Route element={<PrivateComponent />}>
             <Route path="/" element={<h2>Product</h2>} />

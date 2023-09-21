@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./signup.module.css";
+import Navbar from "../navbar/Navbar";
 const SignUp = () => {
   const navigate = useNavigate();
   const [emailData, setEmailData] = useState({
@@ -50,35 +51,38 @@ const SignUp = () => {
   };
 
   return (
-    <div className={styles.signup}>
-      <h2>Register</h2>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter name"
-          onChange={handleChange}
-          name="name"
-          value={emailData.name}
-        />
-        <input
-          type="text"
-          placeholder="Enter email"
-          onChange={handleChange}
-          name="email"
-          value={emailData.email}
-        />
-        <input
-          type="password"
-          placeholder="Enter password"
-          onChange={handleChange}
-          name="password"
-          value={emailData.password}
-        />
-        <button className={styles.submit_btn} type="submit">
-          Sign Up
-        </button>
-      </form>
-    </div>
+    <>
+      <Navbar />
+      <div className={styles.signup}>
+        <h2>Register</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Enter name"
+            onChange={handleChange}
+            name="name"
+            value={emailData.name}
+          />
+          <input
+            type="text"
+            placeholder="Enter email"
+            onChange={handleChange}
+            name="email"
+            value={emailData.email}
+          />
+          <input
+            type="password"
+            placeholder="Enter password"
+            onChange={handleChange}
+            name="password"
+            value={emailData.password}
+          />
+          <button className={styles.submit_btn} type="submit">
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 

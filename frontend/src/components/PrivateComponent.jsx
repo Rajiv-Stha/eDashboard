@@ -6,13 +6,11 @@ const PrivateComponent = () => {
   console.log("auth", auth);
 
   return (
-
     <>
-      <Navbar/>
-   {   auth ? <Outlet /> : <Navigate to="/SignUp" />}
+      <Navbar />
+      {auth ? <Outlet /> : <Navigate to="/SignUp" />}
     </>
-
-  ) 
+  );
 };
 
 export default PrivateComponent;

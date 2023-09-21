@@ -3,18 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 
 const Navbar = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
+  const [user, setUser] = useState();
 
-  const [user, setUser] = useState()
+  useEffect(() => {
+    console.log("changing");
+    const auth = localStorage.getItem("user");
+    if (auth) {
+      setUser(auth);
+    }
+  }, []);
 
-  useEffect(()=>{
-    console.log("changing")
-  const auth = localStorage.getItem("user");
-  if(auth){
-    setUser(auth)
-  }
-  },[])
-  
   const handleLogout = () => {
     localStorage.clear();
     navigate("/signup");
@@ -41,9 +40,13 @@ const Navbar = () => {
               Logout
             </Link>
           ) : (
-            <Link to={"/signup"}>SignUp</Link>
+            <>
+              <Link to={"/signup"}>SignUp</Link>
+              <Link to={"/login"}>login</Link>
+            </>
           )}
         </li>
+        <li></li>
       </ul>
     </div>
   );

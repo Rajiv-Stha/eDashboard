@@ -14,4 +14,5 @@ app.use(
 );
 require("./utils/db")();
 app.use("/api", require("./routes/auth"));
+app.use("/api/product", require("./routes/productRoute"));
 app.listen(8000, () => console.log("server listening on port 8000"));

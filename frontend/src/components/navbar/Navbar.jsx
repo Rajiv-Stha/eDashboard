@@ -21,33 +21,35 @@ const Navbar = () => {
   return (
     <div className={styles.navbar}>
       <h2 className={styles.nav_header}>dashboard</h2>
-      <ul className={styles.nav_ul}>
-        <li>
-          <Link to={"/"}>Product</Link>
-        </li>
-        <li>
-          <Link to={"/add"}>Add Product</Link>
-        </li>
-        <li>
-          <Link to={"/update"}>Updata Product</Link>
-        </li>
-        <li>
-          <Link to={"/profile"}>profile</Link>
-        </li>
-        <li>
-          {user ? (
+      {user ? (
+        <ul className={styles.nav_ul}>
+          <li>
+            <Link to={"/"}>Product</Link>
+          </li>
+          <li>
+            <Link to={"/add"}>Add Product</Link>
+          </li>
+          <li>
+            <Link to={"/update"}>Updata Product</Link>
+          </li>
+          <li>
+            <Link to={"/profile"}>profile</Link>
+          </li>
+          <li>
             <Link onClick={handleLogout} to={"/signup"}>
-              Logout
+              Logout({JSON.parse(user).name})
             </Link>
-          ) : (
-            <>
-              <Link to={"/signup"}>SignUp</Link>
-              <Link to={"/login"}>login</Link>
-            </>
-          )}
-        </li>
-        <li></li>
-      </ul>
+          </li>
+        </ul>
+      ) : (
+        <>
+          <div className={styles.authWrapper}>
+            <Link to={"/signup"}>SignUp</Link>
+
+            <Link to={"/login"}>login</Link>
+          </div>
+        </>
+      )}
     </div>
   );
 };
